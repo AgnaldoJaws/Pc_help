@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:outputText value="#{testeDAO.horario}"></h:outputText>
+        <h:form>
+            <h:inputText value="#{testeDAO.aa.status}"></h:inputText>
+        
+            <h:commandButton value="Salvar" action="#{testeDAO.inserir(oo)}"/>
+        
+            
+            
+            
+        <h:dataTable border="1"
+                     value="#{testeDAO.status}" var="statusVar">
+            
+            <h:column>
+                <f:facet name="header">
+                    
+                    Status
+                </f:facet>
+                #{statusVar.status}
+            </h:column> 
+            
+            
+            
+        </h:dataTable>   
+          
+            
+           
+    
+            <h:selectOneMenu value="#{clienteDAO.cidade}">
+            
+                <f:selectItem itemLabel="--Selecione--"
+                              noSelectionOption="true"/>
+                
+                <f:selectItems value="#{clienteDAO.cidade}"
+                               var="marca"
+                               itemValue="#{marca.idCidade}" 
+                               itemLabel="#{marca.nomeCidade}">
+                </f:selectItems>
+            
+            
+            </h:selectOneMenu>
+            
+            
+            
+        </h:form>
+    </body>
+</html>

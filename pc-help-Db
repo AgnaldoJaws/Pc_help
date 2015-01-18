@@ -1,0 +1,159 @@
+create table tipo_pessoa(
+
+id_tipo_pessoa int (4) auto_increment,
+tipo_pessoa varchar (10) not null,
+constraint pk_id_tipo_pessoa primary key (id_tipo_pessoa)
+
+)
+
+create table status (
+id_status int (2) auto_increment,
+status varcahr (10) not null,
+constraint pk_id_status primary key (id_status)
+
+
+
+)
+
+create table cidade(
+
+id_cidade int (4) auto_increment,
+nome_cidade varchar (10) not null,
+constraint pk_id_cidade primary key (id_cidade))
+
+Barra do Chapéu
+Itapirapuã Paulista
+Apiaí
+Itaóca
+Iporanga
+Adrianópolis
+
+Eldorado
+Sete Barras
+Registro
+Pariquera-Açu
+Iguape
+São Lourenço da Serra
+Juquitiba
+Tapiraí
+Miracatu
+Pedro de Toledo
+Juquiá
+Itariri
+Barra do Turvo
+Jacupiranga
+Cajati
+Registro
+Cananeia
+Ilha Comprida
+
+)
+
+
+
+create table cliente (
+
+
+cod_cli int (4) auto_increment,
+id_tipo_pessoa int (4) not null,
+id_cidade int (4) not null,
+nome_cliente varchar (100) null,
+nome_empresa varchar (100) null,
+endereco varchar (100) not null,
+bairro varchar (100) not null,
+estado varchar (100) not null,
+logradouro  varchar (100) null,
+complemento varchar (100) null,
+cnpj varchar (100) null,
+ie varchar (100) null,
+razao_social varchar (100) null,
+cpf varchar (20) null,
+rg varchar (20) null,
+celular varchar (20) not null,
+telefone varchar (20) not null,
+email varchar (50)not null,
+cep varchar (20) not null,
+skype  varchar (20) not null,
+constraint pk_cod_cli primary key (cod_cli),
+constraint fk_tipo_pessoa foreign key(id_tipo_pessoa) references tipo_pessoa (id_tipo_pessoa),
+constraint fk_id_cidade foreign key(id_cidade) references cidade (id_cidade))
+
+
+
+
+create table maquina (
+
+cod_maq int (4) auto_increment,
+cod_cli int (4) not null,
+tipo varchar (50) not null,
+modelo varchar (50) not null,
+marca varchar (50) not null,
+cor varchar (50) not null,
+processador varchar (50)  null,
+tela varchar (50)  null,
+ram varchar (50)  null,
+hd varchar (50)  null,
+ data_cadastro varchar (50) not null,
+obs varchar (50) not null,
+constraint pk_cod_maq primary key (cod_maq),
+constraint fk_cod_cli foreign key (cos_cli) 
+references cliente (cod_cli)
+
+)
+
+
+
+
+
+create table OS(
+cod_os int (5) auto_increment,
+cod_cli int (5) not null,
+id_status int (2) not null,
+data_abertura DATE ,
+problema varchar (100) not null,
+obs varchar (100) not null,
+    
+constraint pk_cod_os primary key (cod_os),
+    
+constraint fk_cod_cli2 foreign key (cod_cli) 
+references cliente (cod_cli),
+    
+constraint fk_id_status2 foreign key(id_status) 
+references status (id_status)
+
+)
+
+create table SOLUCAO(
+cod_sol int (5) auto_increment,
+cod_os int (5) not null,
+id_status int (2) not null,
+data_bertura DATE,
+solucao varchar (100) not null,
+peca_trocada varchar (50) not null,
+modelo varchar (50) not null,
+marca varchar (50) not null,
+ram varchar (50) not null,
+hd varchar (50) not null,
+data_garantia DATE,
+temp_garantia varchar (50) not null,
+
+constraint pk_cod_sol primary key (cod_sol),
+    
+constraint fk_cod_os foreign key (cod_os) 
+references OS (cod_os),
+    
+constraint fk_id_status  foreign key (id_status)
+references status (id_status)
+)
+
+
+create table PAGAMENTO (
+cod_pag int (5) auto_increment,
+cod_sol int (5) not null,
+form_pag varchar (50) not null,
+num_vezes varchar (50) not null,
+nome_cartao varchar (50) not null,
+constraint pk_COD_PAG primary key (COD_PAG),
+constraint fk_COD_SOL foreign key (COD_SOL)
+references solucao (COD_SOL)
+)
